@@ -1,0 +1,6 @@
+cat ../view/accueil.view.php > ../view/pay.view.php
+cat ../view/accueil.view.php > ../view/panier.view.php
+cat ../view/accueil.view.php > ../view/modif_concert.view.php
+cat ../view/accueil.view.php > ../view/gestion_concert.view.php
+cat ../view/accueil.view.php > ../view/concert.view.php
+cat ../view/accueil.view.php > ../view/add_concert.view.php

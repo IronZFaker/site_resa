@@ -1,0 +1,6 @@
+cat ../controler/accueil.ctrl.php > ../controler/pay.ctrl.php
+cat ../controler/accueil.ctrl.php > ../controler/panier.ctrl.php
+cat ../controler/accueil.ctrl.php > ../controler/modif_concert.ctrl.php
+cat ../controler/accueil.ctrl.php > ../controler/gestion_concert.ctrl.php
+cat ../controler/accueil.ctrl.php > ../controler/concert.ctrl.php
+cat ../controler/accueil.ctrl.php > ../controler/add_concert.ctrl.php

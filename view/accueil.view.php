@@ -2,9 +2,9 @@
 <html lang="fr" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Accueil</title>
     </head>
     <body>
-
+        
     </body>
 </html>

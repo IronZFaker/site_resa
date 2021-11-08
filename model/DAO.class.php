@@ -120,9 +120,9 @@
         }
 
         function getTarifbyPlace($idPlace) : int{
-            $sql="SELECT tarif FROM tarif WHERE 
-                idConcert = (select idConcert from place where idPlace='$idPlace') 
-                AND idZone= (select idZone from siege where 
+            $sql="SELECT tarif FROM tarif WHERE
+                idConcert = (select idConcert from place where idPlace='$idPlace')
+                AND idZone= (select idZone from siege where
                 numSiege = (select numSiege from place where idPlace='$idPlace'))";
             $request = $this->db->query($sql);
             $res = $request->fetchall(PDO::FETCH_CLASS, "Zone");
