@@ -33,6 +33,8 @@
                 if ($res[0]->getTimeExp() > new DateTime("NOW")){
                     $sql="DELETE from panier WHERE idPlace = '$idPlace'";
                     $request = $this->db->exec($sql);
+                    $sql="UPDATE place SET dispo = true WHERE idPlace = '$idPlace'";
+                    $request = $this->db->exec($sql);
                     return false;
                 }
                 else{
@@ -81,13 +83,38 @@
                 
             
         }
-        function addIntoPanier($idClient,$idPlace){
+        function addIntoPanier($idClient,$idPlace) : bool{
             $d =new DateTime("NOW");
             $d->modify('+10 minutes');
-            $sql="INSERT INTO panier(idClient,idPlace,timeExp) VALUES('$idClient','$idPlace','$d')";
-            $request = $this->db->exec($sql);
+            if(!isInPanier($idPlace)){
+                $sql="INSERT INTO panier(idClient,idPlace,timeExp) VALUES('$idClient','$idPlace','$d')";
+                $request = $this->db->exec($sql);
+                $sql="UPDATE place SET dispo = false WHERE idPlace = '$idPlace'";
+                $request = $this->db->exec($sql);
+                return true;
+            }
+            return false;
         }
 
+        function getConcert($idConcert): Concert{
+            $sql="SELECT * FROM concert WHERE idConcert = '$idConcert'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
+            return $res[0];
+        }
+
+        function getPlageTarif($idConcert): string {
+            $sql="SELECT min(tarif) max(tarif) FROM tarif WHERE idConcert = '$idConcert'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
+            return $res[0] ."€ - ". $res[1]."€";
+        }
+
+        function getPlace($idConcert): array {
+            $sql="SELECT  FROM tarif WHERE idConcert = '$idConcert'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
+        }
 
         // Cherche dans la base de données un utilisateur ayant pour adresse et mot de passe : "adresse" et "mdp"
         function findUser($adresse,$mdp): int {
