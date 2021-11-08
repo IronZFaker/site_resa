@@ -28,7 +28,7 @@
             $res = $request->fetchall(PDO::FETCH_CLASS, "Panier");
             if(count($res) == 0){
                 return false;
-            } 
+            }
             else {
                 if ($res[0]->getTimeExp() > new DateTime("NOW")){
                     $sql="DELETE from panier WHERE idPlace = '$idPlace'";
@@ -47,7 +47,7 @@
             if ($id == -1){
                 $sql="INSERT INTO concert(nom,event_date) VALUES('$nom','$date')";
                 $request = $this->db->exec($sql);
-                
+
                 $sql="SELECT * FROM concert WHERE nom = '$nom'";
                 $request = $this->db->query($sql);
                 $id_concert = $request->fetchall(PDO::FETCH_CLASS, "Panier")[0]->getidConcert();
@@ -79,9 +79,18 @@
             }
             else{
 
+                    $sql = "UPDATE concert set nom=$nom, date=$date WHERE idConcert=$id";
+                    $request = $this->db->exec($sql);
+                    $sql = "UPDATE tarif set tarif=$prix_z1 WHERE idConcert=$id and idZone='1'";
+                    $request = $this->db->exec($sql);
+                    $sql = "UPDATE tarif set tarif=$prix_z2 WHERE idConcert=$id and idZone='2'";
+                    $request = $this->db->exec($sql);
+                    $sql = "UPDATE tarif set tarif=$prix_z3 WHERE idConcert=$id and idZone='3'";
+                    $request = $this->db->exec($sql);
+
             }
-                
-            
+
+
         }
         function addIntoPanier($idClient,$idPlace) : bool{
             $d =new DateTime("NOW");
