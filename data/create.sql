@@ -1,6 +1,7 @@
 CREATE TABLE place (
 	idPlace INTEGER PRIMARY KEY,
 	idConcert INTEGER,
+	dispo BOOLEAN,
     numSiege INTEGER
 );
 
@@ -18,7 +19,15 @@ CREATE TABLE panier (
     FOREIGN KEY (idPlace) REFERENCES place(idPlace)
 );
 
+CREATE TABLE concert (
+	idConcert INTEGER PRIMARY KEY,
+	nom TEXT,
+	date DATE
+);
+
 CREATE TABLE tarif (
-	idZone INTEGER PRIMARY KEY,
-	tarif INTEGER
+	idConcert INTEGER,
+	idZone INTEGER,
+	tarif INTEGER,
+	PRIMARY KEY (idConcert,idZone)
 );
