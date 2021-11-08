@@ -119,11 +119,58 @@
             return $res[0] ."€ - ". $res[1]."€";
         }
 
-        function getPlace($idConcert): array {
-            $sql="SELECT  FROM tarif WHERE idConcert = '$idConcert'";
+        function getTarifbyPlace($idPlace) : int{
+            $sql="SELECT tarif FROM tarif WHERE 
+                idConcert = (select idConcert from place where idPlace='$idPlace') 
+                AND idZone= (select idZone from siege where 
+                numSiege = (select numSiege from place where idPlace='$idPlace'))";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Zone");
+            return $res[0]->getTarif();
+        }
+
+        function getPanier($idClient) : Panier{
+            $sql="SELECT * FROM panier WHERE idClient = '$idClient'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Panier");
+            return $res[0];
+        }
+        function getConcert($idPlace): Concert{
+            $sql="SELECT * FROM concert WHERE idConcert = select idConcert from place where idPlace = '$idPlace'";
             $request = $this->db->query($sql);
             $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
+            return $res[0];
         }
+
+        function getPlace($idConcert): array {
+            $sql="SELECT * FROM place WHERE idConcert = '$idConcert'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Place");
+            return $res;
+        }
+
+        function getTarifbyZone($idZone,$idConcert):int{
+            $sql="SELECT tarif FROM tarif WHERE idConcert = '$idConcert' AND idZone = '$idZone'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "tarif");
+            return $res[0];
+        }
+
+        function removePanier($idClient){
+            $sql="DELETE from panier WHERE idClient = '$idClient'";
+            $request = $this->db->exec($sql);
+        }
+
+        function removePlaceFromPanier($idPlace){
+            $sql="DELETE from panier WHERE idPlace = '$idPlace'";
+            $request = $this->db->exec($sql);
+        }
+
+
+
+
+
+
 
         // Cherche dans la base de données un utilisateur ayant pour adresse et mot de passe : "adresse" et "mdp"
         function findUser($adresse,$mdp): int {

@@ -1,5 +1,5 @@
 CREATE TABLE place (
-	idPlace INTEGER PRIMARY KEY,
+	idPlace INTEGER PRIMARY KEY AUTOINCREMENT,
 	idConcert INTEGER,
 	dispo BOOLEAN,
     numSiege INTEGER
@@ -13,8 +13,8 @@ CREATE TABLE siege (
 );
 
 CREATE TABLE panier (
-	idClient INTEGER PRIMARY KEY,
-    timeExp TIMESTAMP,
+	idClient INTEGER PRIMARY KEY AUTOINCREMENT,
+    timeExp DATETIME,
 	idPlace INTEGER,
     FOREIGN KEY (idPlace) REFERENCES place(idPlace)
 );
@@ -22,11 +22,11 @@ CREATE TABLE panier (
 CREATE TABLE concert (
 	idConcert INTEGER PRIMARY KEY,
 	nom TEXT,
-	event_date TIMESTAMP
+	event_date DATETIME
 );
 
 CREATE TABLE tarif (
-	idConcert INTEGER,
+	idConcert INTEGER AUTOINCREMENT,
 	idZone INTEGER,
 	tarif INTEGER,
 	PRIMARY KEY (idConcert,idZone)
