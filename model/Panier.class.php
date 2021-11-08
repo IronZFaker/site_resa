@@ -14,7 +14,7 @@
           return $this->idPlace;
         }
 
-        function getTimeExp() : int {
+        function getTimeExp() : DateTime {
           return $this->timeExp;
         }
 

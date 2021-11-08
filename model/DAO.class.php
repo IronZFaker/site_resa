@@ -21,6 +21,74 @@
             }
         }
 
+
+        function isInPanier($idPlace): bool {
+            $sql="SELECT * FROM panier WHERE idPlace = '$idPlace'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Panier");
+            if(count($res) == 0){
+                return false;
+            } 
+            else {
+                if ($res[0]->getTimeExp() > new DateTime("NOW")){
+                    $sql="DELETE from panier WHERE idPlace = '$idPlace'";
+                    $request = $this->db->exec($sql);
+                    return false;
+                }
+                else{
+                    return true
+                }
+            }
+        }
+
+        function addConcert($id,$nom,$date,$prix_z1,$prix_z2,$prix_z3){
+            if ($id == -1){
+                $sql="INSERT INTO concert(nom,event_date) VALUES('$nom','$date')";
+                $request = $this->db->exec($sql);
+                
+                $sql="SELECT * FROM concert WHERE nom = '$nom'";
+                $request = $this->db->query($sql);
+                $id_concert = $request->fetchall(PDO::FETCH_CLASS, "Panier")[0]->getidConcert();
+
+                $sql="INSERT INTO tarif(idConcert,idZone,tarif) VALUES('$id_concert','1','$prix_z1')";
+                $request = $this->db->exec($sql);
+                $sql="INSERT INTO tarif(idConcert,idZone,tarif) VALUES('$id_concert','2','$prix_z2')";
+                $request = $this->db->exec($sql);
+                $sql="INSERT INTO tarif(idConcert,idZone,tarif) VALUES('$id_concert','3','$prix_z3')";
+                $request = $this->db->exec($sql);
+
+                for ($i=1;$i<=90;$i++){
+                    $sql="INSERT INTO place(idConcert,dispo,numSiege) VALUES('$id_concert','true','$i')";
+                    $request = $this->db->exec($sql);
+                    switch($i){
+                        case <=30:
+                            $n_zone=1;
+                            break;
+                        case <=60:
+                            $n_zone=2;
+                            break;
+                        case <=90:
+                            $n_zone=3;
+                            break;
+                    }
+                    $sql="INSERT INTO siege(numSiege,idZone) VALUES('$i','$n_zone')";
+                    $request = $this->db->exec($sql);
+                }
+            }
+            else{
+
+            }
+                
+            
+        }
+        function addIntoPanier($idClient,$idPlace){
+            $d =new DateTime("NOW");
+            $d->modify('+10 minutes');
+            $sql="INSERT INTO panier(idClient,idPlace,timeExp) VALUES('$idClient','$idPlace','$d')";
+            $request = $this->db->exec($sql);
+        }
+
+
         // Cherche dans la base de données un utilisateur ayant pour adresse et mot de passe : "adresse" et "mdp"
         function findUser($adresse,$mdp): int {
           $sql="SELECT * FROM utilisateur WHERE adresse = '$adresse'";

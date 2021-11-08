@@ -22,7 +22,7 @@ CREATE TABLE panier (
 CREATE TABLE concert (
 	idConcert INTEGER PRIMARY KEY,
 	nom TEXT,
-	date DATE
+	event_date TIMESTAMP
 );
 
 CREATE TABLE tarif (
@@ -30,4 +30,5 @@ CREATE TABLE tarif (
 	idZone INTEGER,
 	tarif INTEGER,
 	PRIMARY KEY (idConcert,idZone)
+	FOREIGN KEY (idConcert) REFERENCES concert(idConcert)
 );
