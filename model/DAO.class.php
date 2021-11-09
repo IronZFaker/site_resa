@@ -17,11 +17,11 @@
         // Constructeur chargé d'ouvrir la BD
         function __construct() {
             echo "Constructeur";
-            // try {
-            //   $this->db = new PDO($this->database);
-            // } catch (\Exception $e) {
-            //   die("Erreur de connexion à la base de données:".$e->getMessage());  // Vérifie si la base de données est bien accessible
-            // }
+            try {
+              $this->db = new PDO($this->database);
+            } catch (\Exception $e) {
+              die("Erreur de connexion à la base de données:".$e->getMessage());  // Vérifie si la base de données est bien accessible
+            }
         }
     //
     //
