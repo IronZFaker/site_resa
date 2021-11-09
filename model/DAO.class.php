@@ -1,11 +1,11 @@
 <?php
     echo "in dao class";
-    require_once("./Panier.class.php");
-    require_once("./Place.class.php");
-    require_once("./Zone.class.php");
-    require_once("./Siege.class.php");
-    require_once("./Concert.class.php");
-    echo "in dao class after require once";
+    require_once("../model/Panier.class.php");
+    require_once("../model/Place.class.php");
+    require_once("../model/Zone.class.php");
+    require_once("../model/Siege.class.php");
+    require_once("../model/Concert.class.php");
+    // echo "in dao class after require once";
     // // Le Data Access Object
     // // Il représente la base de donnée
     // class DAO {
