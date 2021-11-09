@@ -1,6 +1,4 @@
 <?php
-echo "aa framework file";
-
 // Classe minimaliste pour normaliser l'usage d'une vue
 // Cette classe est inspiré du moteur et compilateur de template Smarty
 class View {
