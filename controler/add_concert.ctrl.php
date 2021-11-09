@@ -1,7 +1,11 @@
 <?php
 echo "before";
+include_once("../framework/view.class.php");
+echo "\n framework";
 include("../model/DAO.class.php");
 $dao = new DAO();
+
+$view = new View();
 
 $id = $_GET['id'];
 $nom = $_GET['nom'];
