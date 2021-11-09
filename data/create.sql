@@ -20,13 +20,13 @@ CREATE TABLE panier (
 );
 
 CREATE TABLE concert (
-	idConcert INTEGER PRIMARY KEY,
+	idConcert INTEGER PRIMARY KEY AUTOINCREMENT,
 	nom TEXT,
 	event_date DATETIME
 );
 
 CREATE TABLE tarif (
-	idConcert INTEGER AUTOINCREMENT,
+	idConcert INTEGER,
 	idZone INTEGER,
 	tarif INTEGER,
 	PRIMARY KEY (idConcert,idZone)
