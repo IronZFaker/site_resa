@@ -12,10 +12,11 @@
         // L'objet local PDO de la base de donnée
         private $db;
         // Le type, le chemin et le nom de la base de donnée
-        private $database = 'sqlite:../data/resa.db';
+        private $database = 'sqlite3:../data/resa.db';
 
         // Constructeur chargé d'ouvrir la BD
         function __construct() {
+            echo "Constructeur";
             try {
               $this->db = new PDO($this->database);
             } catch (\Exception $e) {
@@ -80,27 +81,24 @@
                 }
             }
             else{
-
-                    $sql = "UPDATE concert set nom=$nom, date=$date WHERE idConcert=$id";
-                    $request = $this->db->exec($sql);
-                    $sql = "UPDATE tarif set tarif=$prix_z1 WHERE idConcert=$id and idZone='1'";
-                    $request = $this->db->exec($sql);
-                    $sql = "UPDATE tarif set tarif=$prix_z2 WHERE idConcert=$id and idZone='2'";
-                    $request = $this->db->exec($sql);
-                    $sql = "UPDATE tarif set tarif=$prix_z3 WHERE idConcert=$id and idZone='3'";
-                    $request = $this->db->exec($sql);
-
+                $sql = "UPDATE concert set nom=$nom, date=$date WHERE idConcert=$id";
+                $request = $this->db->exec($sql);
+                $sql = "UPDATE tarif set tarif=$prix_z1 WHERE idConcert=$id and idZone='1'";
+                $request = $this->db->exec($sql);
+                $sql = "UPDATE tarif set tarif=$prix_z2 WHERE idConcert=$id and idZone='2'";
+                $request = $this->db->exec($sql);
+                $sql = "UPDATE tarif set tarif=$prix_z3 WHERE idConcert=$id and idZone='3'";
+                $request = $this->db->exec($sql);
             }
-
-
         }
+
         function addIntoPanier($idClient,$idPlace) : bool{
-            $d =new DateTime("NOW");
+            $d = new DateTime("NOW");
             $d->modify('+10 minutes');
             if(!isInPanier($idPlace)){
-                $sql="INSERT INTO panier(idClient,idPlace,timeExp) VALUES('$idClient','$idPlace','$d')";
+                $sql = "INSERT INTO panier(idClient,idPlace,timeExp) VALUES('$idClient','$idPlace','$d')";
                 $request = $this->db->exec($sql);
-                $sql="UPDATE place SET dispo = false WHERE idPlace = '$idPlace'";
+                $sql = "UPDATE place SET dispo = false WHERE idPlace = '$idPlace'";
                 $request = $this->db->exec($sql);
                 return true;
             }
@@ -121,7 +119,7 @@
             return $res[0] ."€ - ". $res[1]."€";
         }
 
-        function getTarifbyPlace($idPlace) : int{
+        function getTarifbyPlace($idPlace): int {
             $sql="SELECT tarif FROM tarif WHERE
                 idConcert = (select idConcert from place where idPlace='$idPlace')
                 AND idZone= (select idZone from siege where
@@ -154,7 +152,7 @@
         function getTarifbyZone($idZone,$idConcert):int{
             $sql="SELECT tarif FROM tarif WHERE idConcert = '$idConcert' AND idZone = '$idZone'";
             $request = $this->db->query($sql);
-            $res = $request->fetchall(PDO::FETCH_CLASS, "tarif");
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Zone");
             return $res[0];
         }
 
@@ -167,5 +165,5 @@
             $sql="DELETE from panier WHERE idPlace = '$idPlace'";
             $request = $this->db->exec($sql);
         }
-      }
+    }
 ?>
