@@ -16,8 +16,6 @@
         function getTimeExp() : DateTime {
           return $this->timeExp;
         }
-
-
     }
 
 ?>

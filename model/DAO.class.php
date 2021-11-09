@@ -4,7 +4,7 @@
     require_once("../model/Zone.class.php");
     require_once("../model/Siege.class.php");
     require_once("../model/Concert.class.php");
-
+    echo "fin require once DAO";
     // // Le Data Access Object
     // // Il représente la base de donnée
     class DAO {
@@ -44,25 +44,25 @@
         //         }
         //     }
         // }
-        
-        function addConcert($id,$nom,$date,$prix_z1,$prix_z2,$prix_z3){
+
+        function addConcert($id, $nom, $date, $prix_z1, $prix_z2, $prix_z3){
             if ($id == -1){
-                $sql="INSERT INTO concert(nom,event_date) VALUES('$nom','$date')";
+                $sql="INSERT INTO concert(nom, event_date) VALUES('$nom','$date')";
                 $request = $this->db->exec($sql);
 
                 $sql="SELECT * FROM concert WHERE nom = '$nom'";
                 $request = $this->db->query($sql);
-                $id_concert = $request->fetchall(PDO::FETCH_CLASS, "Panier")[0]->getidConcert();
+                $id_concert = $request->fetchall(PDO::FETCH_CLASS, "Concert")[0]->getidConcert();
 
-                $sql="INSERT INTO tarif(idConcert,idZone,tarif) VALUES('$id_concert','1','$prix_z1')";
+                $sql="INSERT INTO tarif(idConcert, idZone, tarif) VALUES('$id_concert','1','$prix_z1')";
                 $request = $this->db->exec($sql);
-                $sql="INSERT INTO tarif(idConcert,idZone,tarif) VALUES('$id_concert','2','$prix_z2')";
+                $sql="INSERT INTO tarif(idConcert, idZone, tarif) VALUES('$id_concert','2','$prix_z2')";
                 $request = $this->db->exec($sql);
-                $sql="INSERT INTO tarif(idConcert,idZone,tarif) VALUES('$id_concert','3','$prix_z3')";
+                $sql="INSERT INTO tarif(idConcert, idZone, tarif) VALUES('$id_concert','3','$prix_z3')";
                 $request = $this->db->exec($sql);
 
                 for ($i=1;$i<=90;$i++){
-                    $sql="INSERT INTO place(idConcert,dispo,numSiege) VALUES('$id_concert','true','$i')";
+                    $sql="INSERT INTO place(idConcert, dispo, numSiege) VALUES('$id_concert','true','$i')";
                     $request = $this->db->exec($sql);
                     switch($i){
                         case <=30:
@@ -75,7 +75,7 @@
                             $n_zone=3;
                             break;
                     }
-                    $sql="INSERT INTO siege(numSiege,idZone) VALUES('$i','$n_zone')";
+                    $sql="INSERT INTO siege(numSiege, idZone) VALUES('$i','$n_zone')";
                     $request = $this->db->exec($sql);
                 }
             }
