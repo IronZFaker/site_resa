@@ -2,7 +2,7 @@
 echo "before";
 include_once("../framework/view.class.php");
 echo "framework";
-include_once("../model/DA0.class.php");
+include_once("../model/Concert.class.php");
 echo "include dao";
 $dao = new DAO();
 echo "new dao";
