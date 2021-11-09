@@ -1,12 +1,13 @@
 <?php
 echo "before";
 include_once("../framework/view.class.php");
-echo "\n framework";
-include("../model/DAO.class.php");
+echo "framework";
+include_once("../model/DAO.class.php");
+echo "include dao";
 $dao = new DAO();
-
+echo "new dao";
 $view = new View();
-
+echo "new view";
 $id = $_GET['id'];
 $nom = $_GET['nom'];
 $date = $_GET['date'];
