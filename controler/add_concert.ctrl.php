@@ -1,9 +1,7 @@
 <?php
 echo "before";
-//echo include_once("../model/DAO.class.php");
-echo "aftetr include";
-//$dao = new DAO();
-echo "aftetr new DAO";
+include("../model/DAO.class.php");
+$dao = new DAO();
 
 $id = $_GET['id'];
 $nom = $_GET['nom'];
