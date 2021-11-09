@@ -8,21 +8,21 @@
     // echo "in dao class after require once";
     // // Le Data Access Object
     // // Il représente la base de donnée
-    // class DAO {
-    //     // L'objet local PDO de la base de donnée
-    //     private $db;
-    //     // Le type, le chemin et le nom de la base de donnée
-    //     private $database = 'sqlite3:../data/resa.db';
-    //
-    //     // Constructeur chargé d'ouvrir la BD
-    //     function __construct() {
-    //         echo "Constructeur";
-    //         try {
-    //           $this->db = new PDO($this->database);
-    //         } catch (\Exception $e) {
-    //           die("Erreur de connexion à la base de données:".$e->getMessage());  // Vérifie si la base de données est bien accessible
-    //         }
-    //     }
+    class DAO {
+        // L'objet local PDO de la base de donnée
+        private $db;
+        // Le type, le chemin et le nom de la base de donnée
+        private $database = 'sqlite3:../data/resa.db';
+
+        // Constructeur chargé d'ouvrir la BD
+        function __construct() {
+            echo "Constructeur";
+            // try {
+            //   $this->db = new PDO($this->database);
+            // } catch (\Exception $e) {
+            //   die("Erreur de connexion à la base de données:".$e->getMessage());  // Vérifie si la base de données est bien accessible
+            // }
+        }
     //
     //
     //     function isInPanier($idPlace): bool {
@@ -165,5 +165,5 @@
     //         $sql="DELETE from panier WHERE idPlace = '$idPlace'";
     //         $request = $this->db->exec($sql);
     //     }
-    // }
+    }
 ?>
