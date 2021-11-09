@@ -9,7 +9,9 @@
     $zone2 = $_GET['zone2'];
     $zone3 = $_GET['zone3'];
 
-    $dao->addConcert($id, $nom, $date, $zone1, $zone2, $zone3);
 
+    echo "before";
+    $dao->addConcert($id, $nom, $date, $zone1, $zone2, $zone3);
+    echo "after";
     include("../view/accueil.view.php");
 ?>
