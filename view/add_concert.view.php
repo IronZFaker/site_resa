@@ -17,10 +17,15 @@
           <div>
             <label for="nom">Tarif zone 1 : </label>
             <input type="number" id="zone1" name="zone1" min="1" max="1000">
+            <br>
             <label for="nom">Tarif zone 2 : </label>
             <input type="number" id="zone2" name="zone2" min="1" max="1000">
+            <br>
             <label for="nom">Tarif zone 3 : </label>
             <input type="number" id="zone2" name="zone2" min="1" max="1000">
+          </div>
+          <div>
+            <input type="submit" value="submit">
           </div>
         </form>
     </body>
