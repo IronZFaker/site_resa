@@ -1,5 +1,4 @@
 <?php
-    echo "in siege";
     class Siege {
         private $siege;
         private $zone;

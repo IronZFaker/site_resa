@@ -1,10 +1,8 @@
 <?php
-echo "before";
 include_once("../framework/view.class.php");
-echo "framework";
 include_once("../model/DAO.class.php");
 echo "include dao";
-// $dao = new DAO();
+$dao = new DAO();
 // echo "new dao";
 // $view = new View();
 // echo "new view";

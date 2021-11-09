@@ -1,5 +1,4 @@
 <?php
-    echo "in place";
     class Place {
         private $idPlace;
         private $idConcert;

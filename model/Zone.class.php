@@ -1,5 +1,4 @@
 <?php
-    echo "dans la zone";
     class Zone {
         private $zone;
         private $tarif;

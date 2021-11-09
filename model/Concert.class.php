@@ -1,5 +1,5 @@
 <?php
-    echo "au concert";
+
     class Concert {
         private $idConcert;
         private $nom;

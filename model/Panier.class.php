@@ -1,5 +1,4 @@
 <?php
-    echo "in panier";
     class Panier {
         private $idClient;
         private $idPlace;
