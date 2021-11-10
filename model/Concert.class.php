@@ -3,7 +3,7 @@
     class Concert {
         private $idConcert;
         private $nom;
-        private $date;
+        private $event_date;
 
 
         // Getters
@@ -15,8 +15,8 @@
           return $this->nom;
         }
 
-        function geDate() : int {
-          return $this->date;
+        function geDate() : DateTime {
+          return $this->$event_date;
         }
     }
 

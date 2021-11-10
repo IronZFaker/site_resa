@@ -43,6 +43,14 @@
             }
         }
 
+        function test_select(){
+            $sql="SELECT * FROM concert";
+            $request = $this->db->query($sql);
+            var_dump($request);
+            $req = $request->fetchall(PDO::FETCH_CLASS, "Concert");
+            var_dump($req[0]);
+        }
+
         function addConcert($id, $nom, $date, $prix_z1, $prix_z2, $prix_z3){
             if ($id == -1){
                 $sql = "INSERT INTO concert(nom, event_date) VALUES('$nom', '$date')";

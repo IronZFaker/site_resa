@@ -15,6 +15,7 @@ var_dump($date);
 
 
 $dao->addConcert($id, $nom, $date, $zone1, $zone2, $zone3);
+//$dao->test_select();
 echo "after";
 // include("../view/accueil.view.php");
 ?>
