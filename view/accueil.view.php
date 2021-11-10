@@ -5,6 +5,15 @@
         <title>Accueil</title>
     </head>
     <body>
-        <h1>Bonjour et bienvenue</h1>
+        <div class="">
+            <h1 style="text-align: center">Concerts disponibles</h1>
+            <?php
+            foreach ($concerts as $c){?>
+                <div>
+                    <p><?=$c->getNom()?></p>
+                    <p><?=$c->getDate()?></p>
+                </div>
+            <?php } ?>
+        </div>
     </body>
 </html>

@@ -15,7 +15,7 @@
           return $this->nom;
         }
 
-        function geDate() : DateTime {
+        function getDate() : string {
           return $this->$event_date;
         }
     }

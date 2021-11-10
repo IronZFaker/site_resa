@@ -46,23 +46,19 @@
         function test_select(){
             $sql="SELECT * FROM concert";
             $request = $this->db->query($sql);
-            var_dump($request);
             $req = $request->fetchall(PDO::FETCH_CLASS, "Concert");
-            var_dump($req[0]);
         }
 
         function addConcert($id, $nom, $date, $prix_z1, $prix_z2, $prix_z3){
             if ($id == -1){
                 $sql = "INSERT INTO concert(nom, event_date) VALUES('$nom', '$date')";
                 $request = $this->db->exec($sql);
-                var_dump($request, $sql);
 
                 $sql = "SELECT * FROM concert WHERE nom='$nom'";
                 $request = $this->db->query($sql);
 
                 $req = $request->fetchall(PDO::FETCH_CLASS, "Concert");
                 $id_concert = $req[0]->getidConcert();
-                var_dump($id_concert);
 
                 $sql = "INSERT INTO tarif(idConcert, idZone, tarif) VALUES('$id_concert', 1, '$prix_z1')";
                 $request = $this->db->exec($sql);
@@ -115,8 +111,7 @@
         function getAllconcert() : array {
             $sql="SELECT * FROM concert";
             $request = $this->db->query($sql);
-            $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
-            return $res;
+            return $request->fetchall(PDO::FETCH_CLASS, "Concert");
         }
         function getConcert($idConcert): Concert{
             $sql="SELECT * FROM concert WHERE idConcert='$idConcert'";
@@ -126,10 +121,11 @@
         }
 
         function getPlageTarif($idConcert): string {
-            $sql = "SELECT min(tarif) max(tarif) FROM tarif WHERE idConcert='$idConcert'";
+            $sql = "SELECT min(tarif), max(tarif) FROM tarif WHERE idConcert='$idConcert'";
             $request = $this->db->query($sql);
-            $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
-            return $res[0] ."€ - ". $res[1]."€";
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Zone");
+            // todo corriger l'accès a min et max
+            return $res['min(tarif)'] ."€ - ". $res['max(tarif)']."€";
         }
 
         function getTarifbyPlace($idPlace): int {

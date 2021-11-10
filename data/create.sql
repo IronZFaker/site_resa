@@ -22,7 +22,7 @@ CREATE TABLE panier (
 CREATE TABLE concert (
 	idConcert INTEGER PRIMARY KEY AUTOINCREMENT,
 	nom TEXT,
-	event_date DATETIME
+	event_date TEXT
 );
 
 CREATE TABLE tarif (
