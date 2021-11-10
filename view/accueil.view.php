@@ -4,16 +4,14 @@
         <meta charset="utf-8">
         <title>Accueil</title>
     </head>
-    <body>
+    <body style="text-align: center">
         <div class="">
-            <h1 style="text-align: center">Concerts disponibles</h1>
+            <h1>Concerts disponibles</h1>
             <?php
             foreach ($concerts as $c){?>
                 <a href="../controler/concert.ctrl.php?id=<?=$c->getidConcert();?>">
                     <div>
-                        <p><?=$c->getidConcert();?></p>
-                        <p><?=$c->getNom();?></p>
-                        <p><?=$c->getDate();?></p>
+                        <p><?=$c->getNom();?> - <?=$c->getDate();?></p>
                     </div>
                 </a>
             <?php } ?>

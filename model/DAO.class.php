@@ -98,8 +98,8 @@
         function addIntoPanier($idClient,$idPlace) : bool{
             $d = new DateTime("NOW");
             $d->modify('+10 minutes');
-            if(!isInPanier($idPlace)){
-                $sql = "INSERT INTO panier(idClient,idPlace,timeExp) VALUES('$idClient', '$idPlace', '$d')";
+            if(!$this->isInPanier($idPlace)){
+                $sql = "INSERT INTO panier(idClient,idPlace) VALUES('$idClient', '$idPlace')";
                 $request = $this->db->exec($sql);
                 $sql = "UPDATE place SET dispo = false WHERE idPlace='$idPlace'";
                 $request = $this->db->exec($sql);
@@ -161,7 +161,7 @@
         }
 
         function getTarifbyZone($idZone,$idConcert):int{
-            $sql="SELECT tarif FROM tarif WHERE idConcert = '$idConcert' AND idZone = '$idZone'";
+            $sql="SELECT * FROM tarif WHERE idConcert = '$idConcert' AND idZone = '$idZone'";
             $request = $this->db->query($sql);
             $res = $request->fetchall(PDO::FETCH_CLASS, "Zone");
             return $res[0]->getTarif();
@@ -175,6 +175,25 @@
         function removePlaceFromPanier($idPlace){
             $sql="DELETE from panier WHERE idPlace = '$idPlace'";
             $request = $this->db->exec($sql);
+        }
+
+        function delFromPanier($idClient,$idPlace){
+            $sql="UPDATE place SET dispo=true WHERE idPlace='$idPlace'";
+            $request = $this->db->exec($sql);
+            $sql="DELETE from panier WHERE idClient = '$idClient' AND idPlace = '$idPlace'";
+            $request = $this->db->exec($sql);
+        }
+
+        function validePanier($idClient){
+            $sql="DELETE from panier WHERE idClient = '$idClient'";
+            $request = $this->db->exec($sql);
+        }
+
+        function getPlacebyId($idPlace): Place{
+            $sql = "SELECT * FROM place WHERE idPlace='$idPlace'";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Place");
+            return $res[0];
         }
     }
 ?>

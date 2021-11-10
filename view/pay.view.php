@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title></title>
     </head>
-    <body>
-        <form action="../controler/add_concert.ctrl.php" method="get">
+    <body style="text-align: center">
+        <form action="../view/panier2.view.php" method="get">
           <div>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="nom" required>

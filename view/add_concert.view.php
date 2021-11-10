@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <title></title>
     </head>
-    <body>
+    <body style="text-align: center">
+        <h1>Ajouter un concert</h1>
         <form action="../controler/add_concert.ctrl.php" method="get">
           <div>
             <input type="hidden" name="id" id="id" value="-1">
