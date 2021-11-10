@@ -51,7 +51,7 @@
 
         function addConcert($id, $nom, $date, $prix_z1, $prix_z2, $prix_z3){
             if ($id == -1){
-                $sql = "INSERT INTO concert(nom, event_date) VALUES('$nom', '$date')";
+                $sql = "INSERT INTO concert (nom, event_date) VALUES('$nom', '$date')";
                 $request = $this->db->exec($sql);
 
                 $sql = "SELECT * FROM concert WHERE nom='$nom'";
@@ -153,11 +153,11 @@
         }
         // ok ici
 
-        function getPlace($idConcert): Place{
+        function getPlace($idConcert): array{
             $sql = "SELECT * FROM place WHERE idConcert='$idConcert'";
             $request = $this->db->query($sql);
             $res = $request->fetchall(PDO::FETCH_CLASS, "Place");
-            return $res[0];
+            return $res;
         }
 
         function getTarifbyZone($idZone,$idConcert):int{
