@@ -112,6 +112,12 @@
             return false;
         }
 
+        function getAllconcert() : array {
+            $sql="SELECT * FROM concert";
+            $request = $this->db->query($sql);
+            $res = $request->fetchall(PDO::FETCH_CLASS, "Concert");
+            return $res;
+        }
         function getConcert($idConcert): Concert{
             $sql="SELECT * FROM concert WHERE idConcert='$idConcert'";
             $request = $this->db->query($sql);
