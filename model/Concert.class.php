@@ -16,7 +16,7 @@
         }
 
         function getDate() : string {
-          return $this->$event_date;
+          return $this->event_date;
         }
     }
 

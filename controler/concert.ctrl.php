@@ -3,8 +3,9 @@
     include_once("../framework/view.class.php");
     $dao = new DAO();
     $view = new View();
-
-    $places = $dao->getPlace($_GET['id'];
+    $concert_id = $_GET['id'];
+    
+    $places = $dao->getPlace($concert_id);
 
     $p_zone1 = array();
     $p_zone2 = array();
@@ -26,9 +27,9 @@
     $view->assign('p_zone2', $p_zone2);
     $view->assign('p_zone3', $p_zone3);
 
-    $view->assign('t_zone1', $dao->getTarifbyZone(1,$_GET['id']));
-    $view->assign('t_zone2', $dao->getTarifbyZone(2,$_GET['id']));
-    $view->assign('t_zone3', $dao->getTarifbyZone(3,$_GET['id']));
+    $view->assign('t_zone1', $dao->getTarifbyZone(1, $concert_id));
+    $view->assign('t_zone2', $dao->getTarifbyZone(2, $concert_id));
+    $view->assign('t_zone3', $dao->getTarifbyZone(3, $concert_id));
 
     $view->display("concert.view.php");
 ?>

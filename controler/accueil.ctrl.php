@@ -5,6 +5,7 @@
     $view = new View();
 
     $concerts = $dao->getAllconcert();
+    var_dump($concerts);
     foreach ($concerts as $c) {
         $tarif = $dao->getPlageTarif($c->getidConcert());
         $c->tarif = $tarif;

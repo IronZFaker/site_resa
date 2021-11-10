@@ -9,10 +9,13 @@
             <h1 style="text-align: center">Concerts disponibles</h1>
             <?php
             foreach ($concerts as $c){?>
-                <div>
-                    <p><?=$c->getNom()?></p>
-                    <p><?=$c->getDate()?></p>
-                </div>
+                <a href="../controler/concert.ctrl.php?id=<?=$c->getidConcert();?>">
+                    <div>
+                        <p><?=$c->getidConcert();?></p>
+                        <p><?=$c->getNom();?></p>
+                        <p><?=$c->getDate();?></p>
+                    </div>
+                </a>
             <?php } ?>
         </div>
     </body>

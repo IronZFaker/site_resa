@@ -164,7 +164,7 @@
             $sql="SELECT tarif FROM tarif WHERE idConcert = '$idConcert' AND idZone = '$idZone'";
             $request = $this->db->query($sql);
             $res = $request->fetchall(PDO::FETCH_CLASS, "Zone");
-            return $res[0];
+            return $res[0]->getTarif();
         }
 
         function removePanier($idClient){

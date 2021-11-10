@@ -3,7 +3,7 @@
         private $idPlace;
         private $idConcert;
         private $dispo;
-        private $siege;
+        private $numSiege;
 
         // Getters
         function getidPlace() : int {
@@ -18,7 +18,7 @@
         }
 
         function getSiege() : int {
-          return $this->siege;
+          return $this->numSiege;
         }
 
 
