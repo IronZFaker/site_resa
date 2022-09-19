@@ -12,6 +12,7 @@ CREATE TABLE siege (
     FOREIGN KEY (idZone) REFERENCES zone(idZone)
 );
 
+
 CREATE TABLE panier (
 	idClient INTEGER PRIMARY KEY AUTOINCREMENT,
     timeExp DATETIME,
